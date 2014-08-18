@@ -1,21 +1,29 @@
 doctype html
+html(lang='en')
 html
   head
     meta(charset='utf-8')
-    title Node/Express.js Template
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title World Traveler
+    link(href='/bootstrap/css/bootstrap.min.css', rel='stylesheet')
     link(rel='stylesheet', href='/css/style.css')
   body
-    h1 Node/Express.js Template
-    nav
-      ul
-        li: a(href='/') Home
+    .container-fluid
+      .row
+        .col-xs-12
+          include nav
+      .row
+        .col-xs-12
+          block content
 
-    block content
-
+    block scripts
     script(src='/js/vendor/jquery-2.1.1.min.js')
     script(src='/js/vendor/lodash.min.js')
     script(src='/js/vendor/moment.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBjo29W2itgO6YyiO1VnZlhVv38SGv-u3w&sensor=true')
     script(src='/js/user/main.js')
+    script(src='/js/user/new-vacation.js')
 
-    block scripts
 
