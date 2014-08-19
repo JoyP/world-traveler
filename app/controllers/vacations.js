@@ -1,6 +1,6 @@
 'use strict';
 
-exports.new = function(req,res){
+exports.newVacation = function(req,res){
   res.render('vacations/new');
 };
 

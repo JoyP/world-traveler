@@ -4,7 +4,7 @@ block content
   h2 Add a Vacation
   .row
     .col-xs-4
-      form(role='form', method='post', action='/vacations')
+      form.form-horizontal(role='form', method='post', action='/vacations')
         input#lat(type='hidden', name='lat')
         input#lng(type='hidden', name='lng')
         .form-group
@@ -12,12 +12,12 @@ block content
           input.form-control#name(type='text', name='name', auto-focus=true)
         .form-group
           label(for='start') Start Date
-          input.form-control#start(type='text', name='start', placeholder='8/20/2014')
+          input.form-control#start(type='date', name='start', placeholder='mm/dd/yyy')
         .form-group
           label(for='end') End Date
-          input.form-control#end(type='text', name='end', placeholder='9/10/2014')
-        button(type='submit') Save
+          input.form-control#end(type='date', name='end', placeholder='mm/dd/yyyy')
+        button.btn.btn-primary(type='submit') Save
     .col-xs-8
 
 block scripts
-  script(src='/js/user/new-vacation.js')
+  script(src='/js/user/newVacation.js')
