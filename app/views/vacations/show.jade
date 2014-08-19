@@ -1,0 +1,50 @@
+extends ../shared/template
+block content
+
+  .row
+    .col-xs-6
+      #map
+    .col-xs-6
+      .row
+        .col-xs-12
+          h1= vacation.name
+          table.destinationTable
+            thead
+              tr
+                th Start
+                th End
+                th Latitude
+                th Longitude
+                th Photos
+            tbody(data-name=vacation.name, data-lat=vacation.lat, data-lng=vacation.lng)
+              tr
+                td= moment(vacation.start).format("MMM Do, YYYY")
+                td= moment(vacation.end).format("MMM Do, YYYY")
+                td= vacation.lat.toFixed(8)
+                td= vacation.lng.toFixed(8)
+                td= vacation.photos.length
+        .row
+          .col-xs-12
+            form(method='post', action='vacations/#{vacation._id}/photos/download')
+              label Add Image URL
+              input(name='url', type='text', autofocus=true)
+            button.btn(type='submit')  Add Image
+        .row
+          .col-xs-12
+            form(method='post', action='vacations/#{vacation._id}/photos/upload'i, enctype='multipart/form-data')
+              label Upload Image
+              input.form-control#photos(type='file', name='photos', multiple=true)
+            button.btn(type='submit')  Upload Image
+
+  .row
+    .col-xs-12
+      .panel.panel-default
+        h2.panel-heading Photos
+        .panel-body
+          each photo in vacation.photos
+            img(src='#{photo}')
+
+
+block scripts
+  script(src='/js/user/show.js')
+
