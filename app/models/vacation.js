@@ -17,6 +17,10 @@ Vacation.all = function(cb){
   Vacation.collection.find().toArray(cb);
 };
 
+Vacation.create = function(o,cb){
+  var vac = new Vacation(o);
+  Vacation.collection.save(vac,cb);
+};
 
 module.exports = Vacation;
 

@@ -22,7 +22,7 @@ module.exports = function(app, express){
 
   app.get('/vacations', vacations.index);
   app.get('/vacations/new', vacations.newVacation);
-//  app.post('/vacations', vacations.create);
+  app.post('/vacations', vacations.create);
 
   console.log('Routes Loaded');
 };
