@@ -8,41 +8,47 @@ block content
       .row
         .col-xs-12
           h1= vacation.name
-          table.destinationTable
-            thead
-              tr
-                th Start
-                th End
-                th Latitude
-                th Longitude
-                th Photos
-            tbody(data-name=vacation.name, data-lat=vacation.lat, data-lng=vacation.lng)
-              tr
-                td= moment(vacation.start).format("MMM Do, YYYY")
-                td= moment(vacation.end).format("MMM Do, YYYY")
-                td= vacation.lat.toFixed(8)
-                td= vacation.lng.toFixed(8)
-                td= vacation.photos.length
-        .row
-          .col-xs-12
-            form(method='post', action='vacations/#{vacation._id}/photos/download')
-              label Add Image URL
-              input(name='url', type='text', autofocus=true)
-            button.btn(type='submit')  Add Image
-        .row
-          .col-xs-12
-            form(method='post', action='vacations/#{vacation._id}/photos/upload'i, enctype='multipart/form-data')
-              label Upload Image
-              input.form-control#photos(type='file', name='photos', multiple=true)
-            button.btn(type='submit')  Upload Image
+      .row
+        .col-xs-2
+          .span Start
+        .col-xs-2
+          .span End
+        .col-xs-2
+          .span Latitude
+        .col-xs-2
+          .span Longitude
+        .col-xs-2
+          .span Photos
+      .row(data-name=vacation.name, data-lat=vacation.lat, data-lng=vacation.lng)
+        .col-xs-2
+          .span= moment(vacation.start).format("MMM Do, YYYY")
+        .col-xs-2
+          .span= moment(vacation.end).format("MMM Do, YYYY")
+        .col-xs-2
+          .span= vacation.lat.toFixed(8)
+        .col-xs-2
+          .span= vacation.lng.toFixed(8)
+        .col-xs-2
+          .span= vacation.photos.length
+      .row
+        .col-xs-12
+          form(method='post', action='vacations/#{vacation._id}/photos/download')
+            label(for='url') Image URL
+            input#url(name='url', type='text', autofocus=true)
+          button.btn.btn-success(type='submit') Download Image
+      .row
+        .col-xs-12
+          form(method='post', action='/vacations/#{vacation._id}/photos/upload', enctype='multipart/form-data')
+            label(for='photos') Upload Image
+            input.form-control#photos(type='file', name='photos', multiple=true)
+          button.btn.btn-success(type='submit')  Upload Image
 
   .row
     .col-xs-12
-      .panel.panel-default
-        h2.panel-heading Photos
-        .panel-body
+      h2 Photos
+        .show
           each photo in vacation.photos
-            img(src='#{photo}')
+            .gallery(style='background-image:url(#{photo});')
 
 
 block scripts
